@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/home/bin:~/bin
+export PATH
+
+#JRE https://www.java.com/en/download/manual.jsp
+
+rootpath=`pwd`
+aimpath=${rootpath}/jre_last
+
+if [ -d ${aimpath} ]; then
+  rm -rf ${aimpath}
+fi
+mkdir -p ${aimpath}
+
+if [ -d ${aimpath} ]; then
+  tar -C ${aimpath} -zxvf jre*-linux-x64.tar.gz
+  sleep 1s
+fi
+
+jrename=`ls -l ${aimpath} | grep 'jre' | awk '{print $NF}'`
+jrepath=${aimpath}/${jrename}
+
+if [ "x${jrename}" != "x" ]; then
+
+  cd ${jrepath}
+  rm -rf COPYRIGHT LICENSE README release THIRDPARTYLICENSEREADME-JAVAFX.txt THIRDPARTYLICENSEREADME.txt Welcome.html
+  rm -rf lib/plugin.jar lib/ext/jfxrt.jar bin/javaws lib/javaws.jar lib/desktop plugin lib/deploy* lib/*javafx* lib/*jfx* lib/amd64/libdecora_sse.so lib/amd64/libprism_*.so lib/amd64/libfxplugins.so lib/amd64/libglass.so lib/amd64/libgstreamer-lite.so lib/amd64/libjavafx*.so lib/amd64/libjfx*.so
+
+  tar zcvf ${rootpath}/jre8.tar.gz *
+  sleep 1s
+fi
+
+cd ${rootpath}
+rm -rf jre*-linux-x64.tar.gz
+rm -rf ${aimpath}
+
+echo "done."
