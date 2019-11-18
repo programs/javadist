@@ -3,6 +3,7 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/home/bin:~/bi
 export PATH
 
 #JRE https://www.java.com/en/download/manual.jsp
+#VER JRE8-231
 
 rootpath=`pwd`
 aimpath=${rootpath}/jre_last
